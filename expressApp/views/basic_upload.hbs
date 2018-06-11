@@ -1,0 +1,86 @@
+{{#extend "stylesheets"}}
+    <style type="text/css" media="screen">
+        body {
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            padding-top: 100px;
+        }
+
+        #cantainer {
+            width: 600px;
+            min-height: 400px;
+            padding: 20px;
+            border: 1px solid #999;
+        }
+
+        #img-content {
+            width: 400px;
+            max-height: 400px;
+            background-color: red
+            margin: 0 auto;
+        }
+
+        #img-content img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+{{/extend}}
+<div id="cantainer">
+    <h1 style="text-align:center;">node图片上传测试</h1>
+    <form role="form">
+        <div class="form-group">
+            <label for="exampleInputEmail1">图片上传</label>
+            <input type="file" class="form-control" id="upload" placeholder="">
+            <p class="help-block">选择你要上传的文件</p>
+        </div>
+    </form>
+    <div class="form-group">
+        <label for="exampleInputEmail1">图片上传描述</label>
+        <input type="email" class="form-control" id="fileRemark" placeholder="写入上传文件的描述">
+    </div>
+    <button id="btn" class="btn btn-primary btn-lg btn-block">上传</button>
+    <hr>
+    <label for="exampleInputEmail1">上传成功返回的信息</label>
+    <p class="help-block" id="remark"></p>
+    <div id="img-content"><img src="" alt="" id="img"></div>
+</div>
+
+
+{{#extend "scripts"}}
+    <script type="text/javascript">
+        function fileUpload() {
+            var datas = new FormData();
+            var _files = $("#upload")[0].files[0];
+            console.log(_files)
+            if (_files) {
+                datas.append("file", _files);
+                datas.append("fileRemark", $('#fileRemark').val());
+                console.log(datas);
+                $.ajax({
+                    type: 'post',
+                    dataType: 'json',
+                    url: 'http://localhost:3001/fileUpload/upload',
+                    data: datas,
+                    contentType: false,
+                    processData: false,
+                    success: function (data, textStatus) {
+                        $("#img").attr("src", data.url);
+                        $("#remark").html(data.alt);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(errorThrown)
+                    }
+                });
+            }
+        }
+
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                fileUpload();
+            });
+        });
+    </script>
+{{/extend}}

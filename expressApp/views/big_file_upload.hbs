@@ -1,0 +1,180 @@
+{{#extend "stylesheets"}}
+    <style type="text/css" media="screen">
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        #cantainer {
+            margin: 100px auto;
+            width: 660px;
+            height: auto;
+        }
+    </style>
+{{/extend}}
+
+<div id="cantainer">
+    <form enctype="multipart/form-data" method="post" id="myform">
+        <div class="form-group">
+            <input type="file" id="uploadFiles" multiple>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>文件名</th>
+                <th>文件类型</th>
+                <th>大小</th>
+                <th>上传进度</th>
+                <th>
+                    <button class="btn btn-default" id="uploadAll">全部上传</button>
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+{{#extend "scripts"}}
+    <script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>
+    <script type="text/javascript">
+        /**
+         * 通过文件名获取文件
+         * @param  {[type]} fileName [description]
+         * @return {[type]}          [description]
+         */
+        function getFileByFileName(fileName) {
+            var file_list = $("#uploadFiles")[0].files; //获取用户选择上传的文件列表
+            console.log(file_list);
+            var file;
+            for (var i = 0, len = file_list.length; i < len; i++) {
+                if (file_list[i].name === fileName) {
+                    file = file_list[i];
+                    break;
+                }
+            }
+            return file ? file : [];
+        }
+
+        /**
+         * 上传的方法
+         * @return {[type]} [description]
+         */
+        function fileUpload(fileName) {
+            var file = getFileByFileName(fileName);
+            var totalSize = file.size; //文件的总大小
+            var chunk = 0; //当前上传到第几块分片
+            var size = 10240; //每次上传的长度
+            // var isPaused = false; //是否暂停
+            var isLastChunk = false; //是否是最后一段
+            var chunks = Math.ceil(totalSize / size); //一共可以分多少段
+            console.log(totalSize + "   " + size);
+            var percent = 0; //上传的百分比
+            var timer = null;
+            /**
+             * 开始上传
+             * @param  {[type]} flag 标记是否是第一次上传
+             * @return {[type]}      [description]
+             */
+            startUpload("first");
+
+            function startUpload(flag) {
+                if (flag === "first" || isLastChunk === true) { //如果是第一次上传
+                    // chunck = 0;
+                    isLastChunk = false;
+                    chunk = localStorage.setItem(fileName + "_chunk", 0);
+                }
+
+                //取出当前的分片
+                chunk = localStorage.getItem(fileName + "_chunk");
+                //是否是当前文件的最后一个分片
+                isLastChunk = ((chunks - chunk) === 1) ? true : false;
+                if (isLastChunk === true) {
+                    clearInterval(timer);
+                }
+                console.log(chunks + ">>>>>>>>>>>>>>>>>>>" + parseInt(chunk) + "          " + isLastChunk);
+                //上传的分片的开始位置
+                var begin = chunk * size;
+                //上传分片的结束位置
+                var end = ((parseInt(chunk) + 1) * size > totalSize) ? totalSize : ((parseInt(chunk) + 1) * size);
+
+                console.log(chunk + "++++++++++++" + begin + "   -------------      " + end + "      >>" + (parseInt(chunk) + 1) + ">>>>>>>>>>" + totalSize);
+
+                //上传百分比
+                percent = parseFloat((end / totalSize * 100).toString()).toFixed(2);
+
+                var file_id = md5(fileName);
+                $("#id-" + file_id).html(percent + "%");
+
+                //分片上传对象
+                var uploadData = new FormData();
+                uploadData.append("file", file.slice(begin, end));
+                uploadData.append("fileName", fileName);
+                uploadData.append("isLastChunk", isLastChunk);
+                uploadData.append("totalSize", totalSize);
+                uploadData.append("isFirstUpload", "not-first");
+
+                //ajax文件上传
+                $.ajax({
+                    type: 'post',
+                    dataType: 'json',
+                    url: 'http://localhost:3001/fileUpload/load',
+                    data: uploadData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data, textStatus) {
+                        localStorage.setItem(fileName + "_chunk", ++chunk);
+                        if (timer === null) {
+                            timer = setInterval(function () {
+                                startUpload("");
+                            }, 100);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(errorThrown)
+                    }
+                });
+            }
+        }
+
+
+        /**
+         **加载文件，并且计算文件的大小
+         **/
+        function loadFiles() {
+            var file_list = $("#uploadFiles")[0].files; //获取用户选择上传的文件
+            var tableHtml = "";
+            for (var i = 0, len = file_list.length; i < len; i++) {
+
+                var file_id = md5(file_list[i].name);
+
+                tableHtml += "<tr>";
+                tableHtml += "<td id='" + file_list[i].name + "'>" + file_list[i].name + "</td>";
+                tableHtml += "<td>" + file_list[i].type + "</td>";
+                tableHtml += "<td>" + computedFileSize(file_list[i].size) + "</td>";
+                tableHtml += "<td><span id='id-" + file_id + "'>0</span></td>";
+                tableHtml += "<td><button class='btn btn-default' onclick=\"fileUpload('" + file_list[i].name + "')\" data-size=\"" + computedFileSize(file_list[i].size) + "\">开始上传</button></td>";
+                tableHtml += "</tr>";
+            }
+            $(".table").append(tableHtml);
+        }
+
+        /**
+         **计算文件大小
+         **/
+        function computedFileSize(size) {
+            var size = size > 1024 ? size / 1024 > 1024 ? size / (1024 * 1024) > 1024 ? (size / (1024 * 1024 * 1024)).toFixed(2) + 'GB' : (size / (1024 * 1024)).toFixed(2) + 'MB' : (size / 1024).toFixed(2) + 'KB' : (size).toFixed(2) + 'B';
+            return size;
+        }
+
+        $(document).ready(function () {
+            $("#uploadAll").click(function () {
+                fileUpload();
+            });
+
+            $("#uploadFiles").change(function () {
+                loadFiles();
+            })
+        });
+    </script>
+{{/extend}}

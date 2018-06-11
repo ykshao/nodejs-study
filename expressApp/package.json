@@ -15,7 +15,9 @@
     "less-middleware": "~2.2.0",
     "morgan": "~1.7.0",
     "mysql": "^2.15.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "connect-multiparty": "^2.0.0",
+    "multiparty": "^4.1.2"
   },
   "devDependencies": {
     "cheerio": "^0.22.0",
