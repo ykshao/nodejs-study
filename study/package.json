@@ -1,0 +1,19 @@
+{
+  "name": "socket.io",
+  "version": "1.0.0",
+  "description": "Node.js socket.io",
+  "author": "kaikai",
+  "main": "server.js",
+  "scripts": {
+    "start": "pm2 start server.js -i max"
+  },
+  "dependencies": {
+    "socket.io": "^2.0.4",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-develop-server": "^0.5.2",
+    "gulp-notify": "^3.2.0"
+  }
+}

@@ -1,0 +1,2 @@
+2016-10-31T13:36:36.722+0800 I CONTROL  [main] Trying to install Windows service 'MongoDB'
+2016-10-31T13:36:36.725+0800 I CONTROL  [main] Error connecting to the Service Control Manager: 拒绝访问。 (5)

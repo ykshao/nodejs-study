@@ -1,0 +1,70 @@
+{{#extend "stylesheets"}}
+<style>
+    section.animate {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        animation: hor-animation linear 0.5s forwards;
+    }
+    .animate-ball {
+        width: 100px;
+        height: 100px;
+        animation: vertical-animation cubic-bezier(0,-0.5,1,-0.5) 0.5s forwards;
+    }
+    .ball {
+        width: 100px;
+        height: 100px;
+        background-color: #00B7FF;
+    }
+    @keyframes hor-animation {
+        0% {
+            transform: translateX(0px);
+        }
+        100% {
+            transform: translateX(200px);
+        }
+    }
+    @keyframes vertical-animation {
+        0% {
+            transform: translateY(0px);
+        }
+        100% {
+            transform: translateY(200px);
+        }
+    }
+</style>
+{{/extend}}
+<section class="animate">
+    <div class="animate-ball">
+        <div class="ball"></div>
+    </div>
+</section>
+
+
+<h1>{{title}}</h1>
+
+<p>Welcome to {{title}}</p>
+
+<form method="post" action="/upload" enctype="multipart/form-data">
+    <input type="file" name="avatar" multiple/>
+    <input type="submit" value="upload">
+
+</form>
+<p>================================</p>
+<input type="button" id="testAjax" value="testAjax1"/>
+
+{{#extend "scripts"}}
+    <script src="/javascripts/index.js"></script>
+
+    <script>
+        var n = 10;
+        function Person(n) {
+            n++;
+            console.log(n);
+        }
+        Person(n);
+
+        console.log(n);
+
+    </script>
+{{/extend}}

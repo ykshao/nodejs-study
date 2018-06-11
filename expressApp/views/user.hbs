@@ -1,0 +1,47 @@
+{{#extend "stylesheets"}}
+
+{{/extend}}
+
+<div id="comments">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>用户邮箱</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each res}}
+            <tr>
+                <td>用户详情： {{email}} </td>
+                <td>
+                    <a href="/users/getUser/{{userId}}" class="btn btn-primary btn-xs">详情</a>
+                    <a href="/users/deleteUserById/{{userId}}" class="btn btn-danger btn-xs">删除</a>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<span id="j_screen_draw_800003998_edit" contenteditable="true" style="border: 0px; cursor: text; word-break: break-all; white-space: pre-wrap; word-wrap: break-word; overflow: hidden; margin: 0px; min-width: 18px; display: block; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; font-size: 18px; line-height: normal; font-family: songti; background-color: transparent;">啊但是发射点发</span>
+<span id="message"></span>
+
+{{#extend "scripts"}}
+    <script>
+
+            $("#j_screen_draw_800003998_edit").bind({
+                copy: function (e) {
+                    console.log(e);
+                    console.log($(this).text());
+                    $('#message').text('copy behaviour detected!');
+                },
+                paste: function () {
+                    $('#message').text('paste behaviour detected!');
+                },
+                cut: function () {
+                    $('#message').text('cut behaviour detected!');
+                }
+            });
+    </script>
+{{/extend}}
