@@ -1,0 +1,22 @@
+2016-11-12T16:27:38.729+0800 I CONTROL  [main] Trying to start Windows service 'MongoDB'
+2016-11-12T16:27:38.847+0800 I STORAGE  [thread1] Service running
+2016-11-12T16:27:38.848+0800 I CONTROL  [initandlisten] MongoDB starting : pid=2640 port=27017 dbpath=G:\nodejs\nodetest1\data 64-bit host=DESKTOP-65H3TJH
+2016-11-12T16:27:38.848+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2016-11-12T16:27:38.848+0800 I CONTROL  [initandlisten] db version v3.2.10
+2016-11-12T16:27:38.848+0800 I CONTROL  [initandlisten] git version: 79d9b3ab5ce20f51c272b4411202710a082d0317
+2016-11-12T16:27:38.849+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t-fips  3 May 2016
+2016-11-12T16:27:38.849+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2016-11-12T16:27:38.855+0800 I CONTROL  [initandlisten] modules: none
+2016-11-12T16:27:38.855+0800 I CONTROL  [initandlisten] build environment:
+2016-11-12T16:27:38.855+0800 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2016-11-12T16:27:38.856+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2016-11-12T16:27:38.856+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-11-12T16:27:38.856+0800 I CONTROL  [initandlisten] options: { service: true, storage: { dbPath: "G:\nodejs\nodetest1\data" }, systemLog: { destination: "file", path: "G:\nodejs\nodetest1\log\log.txt" } }
+2016-11-12T16:27:38.924+0800 I -        [initandlisten] Detected data files in G:\nodejs\nodetest1\data created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2016-11-12T16:27:38.945+0800 W -        [initandlisten] Detected unclean shutdown - G:\nodejs\nodetest1\data\mongod.lock is not empty.
+2016-11-12T16:27:38.945+0800 W STORAGE  [initandlisten] Recovering data from the last clean checkpoint.
+2016-11-12T16:27:38.945+0800 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=4G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2016-11-12T16:27:40.902+0800 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+2016-11-12T16:27:40.902+0800 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'G:/nodejs/nodetest1/data/diagnostic.data'
+2016-11-12T16:27:40.987+0800 I NETWORK  [initandlisten] waiting for connections on port 27017
+2016-11-12T16:27:41.072+0800 I FTDC     [ftdc] Unclean full-time diagnostic data capture shutdown detected, found interim file, some metrics may have been lost. OK
