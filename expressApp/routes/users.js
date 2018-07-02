@@ -3,6 +3,8 @@ var router = express.Router();
 // 导入MySQL模块
 var mysql = require('mysql');
 
+var filter = require('../util/filter');
+
 var dbConfig = require('../db/DBConfig');
 var userSQL = require('../db/Usersql');
 
@@ -22,27 +24,34 @@ var responseJSON = function (res, ret) {
 
 /* GET users listing. */
 router.get('/', function (req, res) {
-    pool.getConnection(function (err, connection) {
-        connection.query(userSQL.queryAll, function (err, result) {
-            console.log(result);
+    if (req.session.userName) {
+        // var user = req.session.user;
+        // var name = user.name;
+        // res.send('你好' + name + '，欢迎来到我的家园。');
+        pool.getConnection(function (err, connection) {
+            connection.query(userSQL.queryAll, function (err, result) {
+                console.log(result);
 
-            if (result) {
-                var resData = {
-                    code: 200,
-                    msg: '查询成功',
-                    data: result
-                };
+                if (result) {
+                    var resData = {
+                        code: 200,
+                        msg: '查询成功',
+                        data: result
+                    };
 
-                res.render('user', {title: '账户列表', res: resData.data});
-            } else {
-                responseJSON(res, '');
-            }
+                    res.render('user', {title: '账户列表', res: resData.data});
+                } else {
+                    responseJSON(res, '');
+                }
 
-            // 释放连接
-            connection.release();
+                // 释放连接
+                connection.release();
 
+            });
         });
-    });
+    } else {
+        res.redirect('/login');
+    }
 });
 
 router.get('/getUser/:id', function (req, res) {

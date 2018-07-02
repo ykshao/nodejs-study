@@ -5,15 +5,15 @@
 var multer = require('multer');
 
 var storage = multer.diskStorage({
-    //设置上传文件路径,以后可以扩展成上传至七牛,文件服务器等等
-    //Note:如果你传递的是一个函数，你负责创建文件夹，如果你传递的是一个字符串，multer会自动创建
-    destination: process.cwd() + '/uploads',
+    destination: function (req, file, cb) {
+        // 接收到文件后输出的保存路径（若不存在则需要创建）
+        cb(null, process.cwd() + '/uploads');
+    },
     //TODO:文件区分目录存放
     //给上传文件重命名
     filename: function (req, file, cb) {
-        var fileFormat = (file.originalname).split(".");
-        //cb(null, file.fieldname + "." + fileFormat[fileFormat.length - 1]);
-        cb(null, file.originalname);
+        // 将保存文件名设置为 时间戳 + 文件原始名，比如 151342376785-123.jpg
+        cb(null, Date.now() + "-" + file.originalname);
     }
 });
 

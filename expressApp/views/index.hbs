@@ -1,70 +1,65 @@
 {{#extend "stylesheets"}}
 <style>
-    section.animate {
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        animation: hor-animation linear 0.5s forwards;
-    }
-    .animate-ball {
-        width: 100px;
-        height: 100px;
-        animation: vertical-animation cubic-bezier(0,-0.5,1,-0.5) 0.5s forwards;
-    }
-    .ball {
-        width: 100px;
-        height: 100px;
-        background-color: #00B7FF;
-    }
-    @keyframes hor-animation {
-        0% {
-            transform: translateX(0px);
-        }
-        100% {
-            transform: translateX(200px);
-        }
-    }
-    @keyframes vertical-animation {
-        0% {
-            transform: translateY(0px);
-        }
-        100% {
-            transform: translateY(200px);
-        }
-    }
+
 </style>
 {{/extend}}
-<section class="animate">
-    <div class="animate-ball">
-        <div class="ball"></div>
+<div class="page-header">
+    <h1>{{title}}</h1>
+</div>
+{{#if username}}
+    <div class="alert alert-success" role="alert">
+        用户名：<span>{{username}}</span>  <a href="/logout">退出登录</a>
     </div>
-</section>
+    <div class="list-group">
+        <a href="/users" class="list-group-item">用户列表</a>
+        <a href="#" class="list-group-item">文件上传</a>
+    </div>
+{{else}}
+    <div class="alert alert-warning" role="alert">
+        请您 <a href="/login">登录</a>
+    </div>
+{{/if}}
 
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>分支名称</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each list}}
+        <tr>
+            <td>{{name}}</td>
+            <td><span class="label label-default">未发布</span></td>
+            <td class="text-center">
+                <a href="#" class="btn btn-success btn-xs">详情</a>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
 
-<h1>{{title}}</h1>
-
-<p>Welcome to {{title}}</p>
-
-<form method="post" action="/upload" enctype="multipart/form-data">
-    <input type="file" name="avatar" multiple/>
-    <input type="submit" value="upload">
-
+<!--<form method="post" action="/profile" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="username">用户头像：</label>
+        <input type="file" name="avatar"/>
+        <p class="help-block">说明：用来测试上传一个文件</p>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">上传</button>
+    <input type="button" id="testAjax" class="btn btn-primary btn-sm" value="测试AJAX请求"/>
 </form>
-<p>================================</p>
-<input type="button" id="testAjax" value="testAjax1"/>
+
+<form method="post" action="/photos/upload" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="username">文档图片：</label>
+        <input type="file" name="photos" multiple/>
+        <p class="help-block">说明：用来测试上传多个文件</p>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">上传</button>
+</form>-->
 
 {{#extend "scripts"}}
     <script src="/javascripts/index.js"></script>
-
-    <script>
-        var n = 10;
-        function Person(n) {
-            n++;
-            console.log(n);
-        }
-        Person(n);
-
-        console.log(n);
-
-    </script>
 {{/extend}}
