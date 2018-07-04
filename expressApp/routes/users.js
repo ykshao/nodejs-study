@@ -39,7 +39,11 @@ router.get('/', function (req, res) {
                         data: result
                     };
 
-                    res.render('user', {title: '账户列表', res: resData.data});
+                    res.render('user', {
+                        title: '账户列表',
+                        res: resData.data,
+                        username: req.session.userName
+                    });
                 } else {
                     responseJSON(res, '');
                 }
@@ -68,7 +72,10 @@ router.get('/getUser/:id', function (req, res) {
                     data: result
                 };
 
-                res.render('userDetail', {title: '账户信息', res: resData.data[0]});
+                res.render('userDetail', {
+                    title: '账户信息',
+                    res: resData.data[0]
+                });
             } else {
                 responseJSON(res, '');
             }

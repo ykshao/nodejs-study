@@ -38,14 +38,17 @@ router.get('/', function (req, res) {
 
 
     //get 请求外网
-
     var dataResp = '';
     var reqResp = http.request(options, function (resData) {
         resData.on('data', function (chunk) {
             dataResp+=chunk
         });
         resData.on('end', function () {
-            res.render('index', {title: '首页', list: JSON.parse(dataResp)});
+            res.render('index', {
+                title: '首页',
+                list: JSON.parse(dataResp),
+                username: req.session.userName
+            });
         });
     });
 

@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 var bodyParser = require('body-parser');
+
 // var mysql = require("mysql");
 
 //db配置
@@ -37,21 +38,21 @@ var credentials = {key: privateKey, cert: certificate};*/
 var hbs = require('hbs');
 var blocks = {};
 
-hbs.registerHelper('extend', function(name, context) {
-  var block = blocks[name];
-  if (!block) {
-    block = blocks[name] = [];
-  }
-  block.push(context.fn(this)); // for older versions of handlebars, use block.push(context(this));
+hbs.registerHelper('extend', function (name, context) {
+    var block = blocks[name];
+    if (!block) {
+        block = blocks[name] = [];
+    }
+    block.push(context.fn(this)); // for older versions of handlebars, use block.push(context(this));
 });
 
 // 改动主要在这个方法
-hbs.registerHelper('block', function(name, context) {
-  var len = (blocks[name] || []).length;
-  var val = (blocks[name] || []).join('\n');
-  // clear the block
-  blocks[name] = [];
-  return len ? val : context.fn(this);
+hbs.registerHelper('block', function (name, context) {
+    var len = (blocks[name] || []).length;
+    var val = (blocks[name] || []).join('\n');
+    // clear the block
+    blocks[name] = [];
+    return len ? val : context.fn(this);
 });
 
 var app = express();
@@ -85,6 +86,7 @@ app.all('*', function (req, res, next) {
  */
 var index = require('./routes/index');
 var users = require('./routes/users');
+var topics = require('./routes/topics');
 var upload = require('./routes/upload');
 var login = require('./routes/login');
 
@@ -97,7 +99,7 @@ app.set('view engine', 'hbs');
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(cookieParser('sessiontest'));
 
@@ -107,42 +109,43 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'sessiontest', // 对session id 相关的cookie 进行签名
     resave: true,
-    saveUninitialized:false, // 是否保存未初始化的会话
+    saveUninitialized: false, // 是否保存未初始化的会话
     // store: new MongoStore({
     //     db: 'sessiondb'
     // }),
-    cookie : {
-        maxAge : 1000 * 60 * 3, // 设置 session 的有效时间，单位毫秒
+    cookie: {
+        maxAge: 1000 * 60 * 3, // 设置 session 的有效时间，单位毫秒
     },
 }));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/topics', topics);
 app.use('/fileUpload', upload);
 app.use('/login', login);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'dev' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'dev' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 //监听
 app.listen(Config.port, function () {
-  console.log('NODE服务监听的端口=====', Config.port);
-  console.log('启动成功');
+    console.log('NODE服务监听的端口=====', Config.port);
+    console.log('启动成功');
 });
 
 /*

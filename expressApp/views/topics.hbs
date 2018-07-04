@@ -1,0 +1,44 @@
+{{#extend "stylesheets"}}
+    <style>
+        .comments {
+            margin-top: 20px;
+        }
+    </style>
+{{/extend}}
+
+<div class="page-header">
+    <h1>{{title}}</h1>
+</div>
+
+
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="/">首页</a></li>
+    <li role="presentation" class="active"><a href="/topics">文章列表</a></li>
+    <li role="presentation"><a href="#">我的消息</a></li>
+</ul>
+
+<div id="comments" class="comments">
+    <div class="container">
+
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>标题</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each data1}}
+                <tr>
+                    <td><a href="/users/getUser">{{title}} </a></td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{#extend "scripts"}}
+    <script>
+
+
+    </script>
+{{/extend}}
