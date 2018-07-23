@@ -1,7 +1,7 @@
 /**
  * 暂时备用
  */
-var path = require('path');
+var path = require('certificate');
 var _ = require('lodash');
 var root = __dirname;
 var domain = 'http://kmanjs.com';

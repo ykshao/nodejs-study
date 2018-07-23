@@ -1,6 +1,6 @@
 'use strict';
 var http = require('http');
-var path = require('path');
+var path = require('certificate');
 var express = require('express');
 var SocketIo = require('socket.io');
 
@@ -14,7 +14,7 @@ var io = new SocketIo(server, {
     transports: ['websocket', 'polling'],
     allowUpgrades: true,
     httpCompression: true
-    // path: '/js', //提供客户端js路径
+    // certificate: '/js', //提供客户端js路径
     // serveClient: false //是否禁用客户端js
 });
 

@@ -1,7 +1,7 @@
 var express = require('express');
-/*var fs = require('fs');
-var http = require('http');
-var https = require('https');*/
+var fs = require('fs');
+// var http = require('http');
+var https = require('https');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -30,9 +30,12 @@ var bodyParser = require('body-parser');
 // });
 
 var Config = require('./config/config');
-/*var privateKey  = fs.readFileSync('./path/to/private.pem', 'utf8');
-var certificate = fs.readFileSync('./path/to/file.crt', 'utf8');
-var credentials = {key: privateKey, cert: certificate};*/
+
+//根据项目的路径导入生成的证书文件
+var privateKey = fs.readFileSync(path.join(__dirname, './certificate/private.pem'), 'utf8');
+var certificate = fs.readFileSync(path.join(__dirname, './certificate/file.crt'), 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
 
 // 模板继承
 var hbs = require('hbs');
@@ -57,8 +60,8 @@ hbs.registerHelper('block', function (name, context) {
 
 var app = express();
 
-/*var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);*/
+/*var httpServer = http.createServer(app);*/
+var httpsServer = https.createServer(credentials, app);
 
 //设置跨域访问
 app.all('*', function (req, res, next) {
@@ -143,15 +146,19 @@ app.use(function (err, req, res, next) {
 });
 
 //监听
+/*
 app.listen(Config.port, function () {
     console.log('NODE服务监听的端口=====', Config.port);
     console.log('启动成功');
 });
+*/
 
 /*
 httpServer.listen(Config.port, function() {
     console.log('HTTP Server is running on: http://localhost:%s', Config.port);
 });
-httpsServer.listen(Config.ss_port, function() {
-    console.log('HTTPS Server is running on: https://localhost:%s', Config.ss_port);
-});*/
+*/
+httpsServer.listen(Config.ss_port, function () {
+    console.log('NODE服务监听的端口=====', Config.ss_port);
+    console.log('启动成功 HTTPS Server is running on: https://localhost:%s', Config.ss_port);
+});
