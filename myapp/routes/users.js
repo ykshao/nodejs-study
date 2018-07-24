@@ -42,6 +42,7 @@ router.get('/list', function (req, res, next) {
             console.log(error);
         } else {
             res.render('user_list', {
+                title: '用户列表',
                 data: result
             });
         }
@@ -50,7 +51,7 @@ router.get('/list', function (req, res, next) {
 
 router.get('/add', function (req, res, next) {
     res.render('user_add', {
-        title: 'Express'
+        title: '添加用户'
     });
 });
 

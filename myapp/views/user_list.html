@@ -1,0 +1,53 @@
+{{#extend "head_css"}}
+<link rel='stylesheet' href='/css/user.css'/>
+{{/extend}}
+
+{{#extend "body"}}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">用户列表</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <td>用户名</td>
+                <td>标题</td>
+                <td>内容</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each data}}
+            <tr data-id="{{id}}">
+                <td>{{showName username}}</td>
+                <td>{{title}}</td>
+                <td>{{content}}</td>
+                <td>
+                    <!-- Split button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger btn-xs">操作</button>
+                        <button type="button" class="btn btn-danger btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a data-action="delBtn" href="#">删除</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">修改</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{{/extend}}
+
+{{#extend "js"}}
+<script type='text/javascript' src='/js/user.js'></script>
+{{/extend}}

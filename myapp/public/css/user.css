@@ -1,0 +1,24 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background: blue;
+    padding: 20px;
+}
+
+table {
+    background-color: #fff;
+}
+
+.layout_user {
+
+}
+
+h4 {
+    color: #fff;
+}
+
+.dropdown-menu {
+    min-width: 80px;
+}

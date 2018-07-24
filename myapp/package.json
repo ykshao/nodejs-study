@@ -26,12 +26,8 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "bluebird": "^3.4.6",
-    "cluster": "^0.7.7",
     "hbs": "^4.0.1",
-    "mockjs": "^1.0.1-beta3",
     "mongodb": "^2.2.11",
-    "mongoose": "^4.6.5",
-    "nodemon": "^1.11.0"
+    "mongoose": "^4.6.5"
   }
 }
