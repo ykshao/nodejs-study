@@ -3,11 +3,10 @@
 {{/extend}}
 
 <h1>用户列表</h1>
-<button class="btn btn-success btn-sm" id="btn_get">添加</button>
+<a href="/users/add" class="btn btn-success btn-sm" >添加</a>
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>id</th>
         <td>用户名</td>
         <td>标题</td>
         <td>内容</td>
@@ -17,7 +16,6 @@
     <tbody>
     {{#each data}}
     <tr data-id="{{id}}">
-        <th>{{id}}</th>
         <td>{{showName username}}</td>
         <td>{{title}}</td>
         <td>{{content}}</td>

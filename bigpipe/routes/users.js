@@ -12,7 +12,7 @@ router.all('*', function(req, res, next) {
 });
 
 // 模板方法
-var helper = require('../helper');
+// var helper = require('../helper');
 
 // Schema 结构
 var mongooseSchema = new mongoose.Schema({

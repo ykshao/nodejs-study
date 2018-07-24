@@ -1,8 +1,8 @@
 var express = require('express');
-var cluster = require('cluster');
-var numCPUs = require('os').cpus().length;
-var path = require('certificate');
-var favicon = require('serve-favicon');
+// var cluster = require('cluster');
+// var numCPUs = require('os').cpus().length;
+var path = require('path');
+// var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -49,6 +49,8 @@ hbs.registerHelper('block', function(name) {
   blocks[name] = [];
   return val;
 });
+// 模板方法
+var helper = require('./helper');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(certificate.join(__dirname, 'public', 'favicon.ico')));
@@ -67,13 +69,11 @@ var dataList = require('./routes/data');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var learning11 = require('./routes/wap/learing11/index');
-var redis = require('./routes/redis');
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/data', dataList);
 app.use('/wap/learning11', learning11);
-app.use('/redis', redis);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
