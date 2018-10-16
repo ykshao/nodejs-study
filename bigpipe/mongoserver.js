@@ -4,10 +4,10 @@ var db = mongoose.createConnection('mongodb://127.0.0.1:27017/nodetest1');
 
 // 链接错误
 db.on('error', function (error) {
-    console.log(error);
+  console.log(error);
 });
 
 module.exports = {
-    mongoose: mongoose,
-    db: db
+  mongoose: mongoose,
+  db: db
 };

@@ -1,20 +1,5 @@
 @import "animate.css";
 
-/*初始化样式*/
-/* html{font-size:62.5%;} */
-body{ font-family:'Microsoft YaHei',STXihei,MingLiu;}
-cite,i,s,b{ font-style:normal;font-weight:normal;}
-body,ul,li,p,dl,dt,dd,ol,h1,h2,h3,h4,h5,h6{ margin:0px; padding: 0px;}
-h1,h2,h3,h4{  font-weight: normal;}
-li{ list-style: none;}
-img{border:0px;}
-a,a:link,a:visited{ text-decoration: none;}
-input{font-family:'Microsoft YaHei',STXihei,MingLiu;outline: none;border: none;margin:0;padding: 0;}
-
-.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
-.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
-
-@charset "utf-8";
 @imgPath: "../../../images/wap/learning11/";
 @fontSize16: 0.25rem;
 @fontSize18: 0.28125rem;
@@ -23,8 +8,70 @@ input{font-family:'Microsoft YaHei',STXihei,MingLiu;outline: none;border: none;m
 @fontSize36: 0.5625rem;
 @fontSize24: 0.375rem;
 @fontSize28: 0.4375rem;
+
+/*初始化样式*/
+body {
+  font-family: 'Microsoft YaHei', STXihei, MingLiu;
+}
+
+cite, i, s, b {
+  font-style: normal;
+  font-weight: normal;
+}
+
+body, ul, li, p, dl, dt, dd, ol, h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+  padding: 0px;
+}
+
+h1, h2, h3, h4 {
+  font-weight: normal;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  border: 0px;
+}
+
+a, a:link, a:visited {
+  text-decoration: none;
+}
+
+input {
+  font-family: 'Microsoft YaHei', STXihei, MingLiu;
+  outline: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
 // -function
-.f-toe{overflow:hidden;word-wrap:normal;white-space:nowrap;text-overflow:ellipsis;}
+.f-toe {
+  overflow: hidden;
+  word-wrap: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 // -mixmin
 .f-bline(@c: #C7C7C7) {
@@ -73,16 +120,14 @@ input{font-family:'Microsoft YaHei',STXihei,MingLiu;outline: none;border: none;m
 * @note:    双11H5
 */
 /*双11H5*/
-
-html,body{
-  font-family:'Microsoft YaHei',STXihei,MingLiu;
+html, body {
   min-width: 320px;
 }
 
 body {
-  background:#8f01b2 url('@{imgPath}bg_body.png') no-repeat;
+  background: #8f01b2 url('@{imgPath}bg_body.png') no-repeat;
   background-size: 100% auto;
-  font-size: 12px;  
+  font-size: 12px;
 }
 
 .hide {
@@ -94,10 +139,12 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  .banner {width: 100%;}
+  .banner {
+    width: 100%;
+  }
 }
 
-.rota{
+.rota {
   z-index: 6;
   position: relative;
   width: 9.21875rem;
@@ -124,48 +171,48 @@ body {
       height: 5.9375rem;
       overflow: hidden;
       ul {
-          padding-top: 1.1875rem;
-          width: 8.4375rem;
-          margin: 0 auto;
+        padding-top: 1.1875rem;
+        width: 8.4375rem;
+        margin: 0 auto;
         li {
           height: 1.09375rem;
           width: 8.4375rem;
           margin-bottom: 0.46875rem;
           .txt {
-              outline: none;
-              -webkit-appearance: none;
-              -webkit-tap-highlight-color: rgba(0,0,0,0);
-              background-color: #fff;
-              height: 100%;
-              width: 7.5rem;
-              border: none;
-              font-size: @fontSize30;
-              border-radius: 0.15625rem;
-              padding: 0 0.46875rem;
-              text-align: left;
+            outline: none;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            background-color: #fff;
+            height: 100%;
+            width: 7.5rem;
+            border: none;
+            font-size: @fontSize30;
+            border-radius: 0.15625rem;
+            padding: 0 0.46875rem;
+            text-align: left;
           }
           .tel_code {
-              width: 3.75rem;
-              float: left;
+            width: 3.75rem;
+            float: left;
           }
           .tel_btn {
-              display: inline-block;
-              height: 1.09375rem;
-              line-height: 1.09375rem;
-              width: 3.4375rem;
-              color: #c82401;
-              background: #faac00;
-              border-radius: 0.15625rem;
-              font-size: @fontSize30;
-              color: #fff;
-              text-align: center;
-              float: right;
-              background: url('@{imgPath}btn_send.png') no-repeat;
-              background-size: cover;
-              &.sending {
-                background: #e5e5e5;
-                color: #aaaaaa;
-              }
+            display: inline-block;
+            height: 1.09375rem;
+            line-height: 1.09375rem;
+            width: 3.4375rem;
+            color: #c82401;
+            background: #faac00;
+            border-radius: 0.15625rem;
+            font-size: @fontSize30;
+            color: #fff;
+            text-align: center;
+            float: right;
+            background: url('@{imgPath}btn_send.png') no-repeat;
+            background-size: cover;
+            &.sending {
+              background: #e5e5e5;
+              color: #aaaaaa;
+            }
           }
         }
       }
@@ -178,7 +225,7 @@ body {
       }
     }
   }
-  .prize_list{
+  .prize_list {
     position: relative;
     overflow: hidden;
     margin-top: 0.5rem;
@@ -194,7 +241,7 @@ body {
       }
     }
 
-    .names{
+    .names {
       background: #ffd400;
       border-radius: 0.3125rem;
       margin-top: 0.96875rem;
@@ -238,7 +285,7 @@ body {
 
       }
     }
-    .info{
+    .info {
       font-size: 0.375rem;
       line-height: 0.625rem;
       margin-top: 0.234375rem;
@@ -246,7 +293,7 @@ body {
     }
   }
 
-  .l_btn{
+  .l_btn {
     margin: 0.46875rem auto 0 auto;
     &.disabled {
       border-radius: 0.15625rem;
@@ -255,34 +302,34 @@ body {
     }
   }
 
-  .dial-bg{
+  .dial-bg {
     width: 9.21875rem;
     height: 9.375rem;
     margin: 0 auto;
     background: url('@{imgPath}dial_bg.png') no-repeat;
     background-size: cover;
     overflow: hidden;
-    .l_grid{
+    .l_grid {
       margin-left: 0.71875rem;
       margin-top: 0.71875rem;
-      li{
+      li {
         width: 2.53125rem;
         height: 2.609375rem;
         margin-right: 0.109375rem;
         margin-bottom: 0.109375rem;
         float: left;
-        background:url('@{imgPath}l_bg.png') 0 -2.8125rem no-repeat;
+        background: url('@{imgPath}l_bg.png') 0 -2.8125rem no-repeat;
         background-size: 2.53125rem 10.96875rem;
-        &.pointer{
-          background-position:0 -5.5625rem;
+        &.pointer {
+          background-position: 0 -5.5625rem;
         }
-        &.pointer:active{
-          background-position:0 -8.328125rem;
+        &.pointer:active {
+          background-position: 0 -8.328125rem;
         }
-        &.l_now{
+        &.l_now {
           background-position: 0 0;
         }
-        img{
+        img {
           margin: 0.15625rem auto 0 auto;
           height: 2.34375rem;
           width: 2.34375rem;
@@ -294,7 +341,7 @@ body {
 }
 
 .pri-list {
-  
+
   .caption {
     img {
       width: 100%;
@@ -373,7 +420,7 @@ body {
       left: 0;
       top: 0;
       &.hot {
-        background:url('@{imgPath}label_hot.png') no-repeat;
+        background: url('@{imgPath}label_hot.png') no-repeat;
         background-size: cover;
       }
       &.discount {
@@ -382,7 +429,7 @@ body {
         top: -0.234375rem;
         left: -0.234375rem;
         &.discount5 {
-          background:url('@{imgPath}label_discount_5.png') no-repeat;
+          background: url('@{imgPath}label_discount_5.png') no-repeat;
           background-size: cover;
         }
       }
@@ -398,7 +445,7 @@ body {
   .download {
     background: #ffd400;
     overflow: hidden;
-    .l_btn { 
+    .l_btn {
       margin: 0.46875rem auto 0.78125rem auto;
     }
   }
@@ -417,79 +464,79 @@ body {
 
 //获得奖品
 .dialog {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 21;
-    width: 100%;
-    height: 100%;
-    background-color:rgba(0,0,0,0.6);
-    .info{
-        position: relative;
-        width: 10.0rem;
-        height: 10.4375rem;
-        left: 50%;
-        top: 50%;
-        margin-top: -6rem;
-        margin-left: -5.0rem;
-        background: url('@{imgPath}prize_bg02.png') center no-repeat;
-        background-size: cover;
-        .box{
-            position: relative;
-            left: 0rem;
-            top: 0rem;
-            padding-top: 3.25rem;
-            text-align: center;
-            overflow: hidden;
-            h3{
-              font-size: @fontSize30;
-              color: #5e4000;
-              margin-top: 0.4rem;
-            }
-            .close{
-              width: 0.78125rem;
-              height: 0.78125rem;
-              position: absolute;
-              right: 0.34375rem;
-              top: 2.234375rem;
-            }
-            .detail {
-              margin-top: 1.5rem;
-            }
-            img{
-              display: none;
-              height: 3.125rem;
-            }
-            .prize_tip {
-              color: #f76f4d;
-              text-align: center;
-              width: 6.5625rem;
-              margin: 0 auto;
-              padding-top: 1.25rem;
-              line-height: 1rem;
-              .tt {
-                font-size: @fontSize36;
-              }
-              .con {
-                font-size: @fontSize30;
-                padding: 0 0.3125rem;
-              }
-              .app_btn {
-                margin-top: 1rem;
-                display: inline-block;
-                width: 100%;
-                height: 1.09375rem;
-                line-height: 1.09375rem;
-                background: #f76f4d;
-                color: #fff;
-                border-radius: 0.15625rem;
-                font-size: @fontSize32;
-              }
-            }
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 21;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  .info {
+    position: relative;
+    width: 10.0rem;
+    height: 10.4375rem;
+    left: 50%;
+    top: 50%;
+    margin-top: -6rem;
+    margin-left: -5.0rem;
+    background: url('@{imgPath}prize_bg02.png') center no-repeat;
+    background-size: cover;
+    .box {
+      position: relative;
+      left: 0rem;
+      top: 0rem;
+      padding-top: 3.25rem;
+      text-align: center;
+      overflow: hidden;
+      h3 {
+        font-size: @fontSize30;
+        color: #5e4000;
+        margin-top: 0.4rem;
+      }
+      .close {
+        width: 0.78125rem;
+        height: 0.78125rem;
+        position: absolute;
+        right: 0.34375rem;
+        top: 2.234375rem;
+      }
+      .detail {
+        margin-top: 1.5rem;
+      }
+      img {
+        display: none;
+        height: 3.125rem;
+      }
+      .prize_tip {
+        color: #f76f4d;
+        text-align: center;
+        width: 6.5625rem;
+        margin: 0 auto;
+        padding-top: 1.25rem;
+        line-height: 1rem;
+        .tt {
+          font-size: @fontSize36;
         }
+        .con {
+          font-size: @fontSize30;
+          padding: 0 0.3125rem;
+        }
+        .app_btn {
+          margin-top: 1rem;
+          display: inline-block;
+          width: 100%;
+          height: 1.09375rem;
+          line-height: 1.09375rem;
+          background: #f76f4d;
+          color: #fff;
+          border-radius: 0.15625rem;
+          font-size: @fontSize32;
+        }
+      }
     }
+  }
 }
 
 // 我的抽奖记录和未抽奖
@@ -503,7 +550,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  .tip{
+  .tip {
     position: relative;
     width: 8.4375rem;
     height: 3.78125rem;
@@ -513,7 +560,7 @@ body {
     margin-top: -1.890625rem;
     margin-left: -4.21875rem;
     border-radius: 0.15625rem;
-    .close{
+    .close {
       width: 1.0rem;
       height: 1.0rem;
       position: absolute;
@@ -522,7 +569,7 @@ body {
       background: url('@{imgPath}join_close.jpg') no-repeat;
       background-size: cover;
     }
-    .gold_box{
+    .gold_box {
       background: url('@{imgPath}look_detail02.png') no-repeat;
       background-size: cover;
       position: absolute;
@@ -531,30 +578,30 @@ body {
       right: 0.15625rem;
       bottom: -0.03125rem;
     }
-    .text{
+    .text {
       float: left;
       color: #5e4000;
       padding-right: 0.390625rem;
     }
-    .text1{
+    .text1 {
       padding-left: 0.859375rem;
       padding-top: 1rem;
-      p{
+      p {
         line-height: 0.5rem;
         font-size: @fontSize24;
         font-weight: bold;
       }
-      h3{
+      h3 {
         padding-top: 0.078125rem;
         font-size: @fontSize32;
-        span{
+        span {
           font-size: @fontSize18;
         }
       }
     }
-    .text2{
+    .text2 {
       padding-left: 0.859375rem;
-      h3{
+      h3 {
         font-size: @fontSize24;
         padding-top: 1.5625rem;
       }
@@ -573,7 +620,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  .tip{
+  .tip {
     position: relative;
     width: 8.4375rem;
     height: 3.78125rem;
@@ -583,7 +630,7 @@ body {
     margin-top: -1.890625rem;
     margin-left: -4.21875rem;
     border-radius: 0.15625rem;
-    .close{
+    .close {
       width: 1.0rem;
       height: 1.0rem;
       position: absolute;
@@ -592,7 +639,7 @@ body {
       background: url('@{imgPath}close2.png') no-repeat;
       background-size: cover;
     }
-    .text{
+    .text {
       float: left;
       margin-top: 0.78125rem;
       color: #f76f4d;
@@ -609,11 +656,11 @@ body {
   }
 }
 
-.l_btn{
+.l_btn {
   width: 6.15625rem;
   height: 1.40625rem;
   line-height: 1.40625rem;
-  background:url("@{imgPath}btn_bg_record.png") no-repeat;
+  background: url("@{imgPath}btn_bg_record.png") no-repeat;
   background-size: cover;
   color: #c82401;
   font-size: 0.5625rem;
