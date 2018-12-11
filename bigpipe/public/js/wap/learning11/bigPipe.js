@@ -1,0 +1,1 @@
+var BigPipe=function(){this.callbacks={}};BigPipe.prototype.ready=function(i,t){this.callbacks[i]||(this.callbacks[i]=[]),this.callbacks[i].push(t)},BigPipe.prototype.set=function(i,t){for(var a=this.callbacks[i]||[],c=0;c<a.length;c++)a[c].call(this,t)};

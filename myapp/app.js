@@ -68,11 +68,9 @@ app.all('*', function (req, res, next) {
  */
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var learning11 = require('./routes/wap/learing11/index');
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/wap/learning11', learning11);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -4,8 +4,9 @@
   "homepage": "http://www.51Talk.com",
   "author": "shaoyongkai@51Talk.com",
   "scripts": {
-    "start": "pm2 start app.js --watch",
-    "stop": "pm2 stop app.js"
+    "start": "pm2 start app.js --name myapp",
+    "stop": "pm2 stop app.js",
+    "deploy": ""
   },
   "description": "nodejs Gulp Manage",
   "main": "app.js",

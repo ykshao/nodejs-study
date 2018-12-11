@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+// var fs = require('fs');
 
 // router.all('*', function (req, res, next) {
 //     res.locals = {
@@ -15,10 +16,13 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res) {
-    res.render('index', {
-        layout: "layout",
-        title: '首页 NodeJS Express'
-    });
+
+  res.render('index', {
+    layout: "layout",
+    title: '首页 NodeJS Express'
+  });
+
+
 });
 
 module.exports = router;

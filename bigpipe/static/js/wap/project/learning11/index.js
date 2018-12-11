@@ -9,14 +9,14 @@ define(function (require, exports, module) {
    * ajax test
    */
 
-  $.ajax({
+  /*$.ajax({
     type: "get",
     dataType: "json",
     url: "/wap/learning11/dataApi/user",
     success: function (res) {
       console.log('res---------------->', res)
     }
-  });
+  });*/
 
   //全局参数配置
   var gconfig = {

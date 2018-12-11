@@ -13,11 +13,45 @@ router.all('*', function (req, res, next) {
 });
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res, next) {
   res.render('wap/learning11/index', {
     layout: "wap/common/layout",
     title: '51Talk-无忧英语111'
+  }, function (err, str) {
+    res.write(str)
   });
+
+  var result = await httpApi.getUserByAsync('user');
+  console.log('result------------->', result.data);
+
+  var pageLets_list = {
+    pageLet1: false,
+    pageLet2: false
+  }
+
+  function is_end(pageLets) {
+    pageLets_list[pageLets] = true;
+    for (let x in pageLets_list) {
+      if (!pageLets_list[x]) {
+        return;
+      }
+    }
+    res.end();
+    return;
+  }
+
+  function pageLets(pageLets) {
+    res.write('<script>bigPipe.set("' + pageLets + '",' + JSON.stringify(result.data) + ');</script>');
+    is_end(pageLets)
+  }
+
+  setTimeout(function () {
+    pageLets("pageLet1");
+  }, 1000);
+  setTimeout(function () {
+    pageLets("pageLet2");
+  }, 3000);
+
 });
 
 router.get('/dataApi/user', async function (req, res, next) {

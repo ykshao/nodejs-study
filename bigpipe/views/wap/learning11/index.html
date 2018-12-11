@@ -220,8 +220,22 @@
         </div>
     </div>
 </div>
+
+<div id="test1">loading......</div>
+<div id="test2">loading......</div>
 {{/extend}}
 
 {{#extend "scripts"}}
+<script src="{{jsPath}}/bigPipe.js"></script>
 <script src="{{jsPath}}/vendor.js"></script>
+<script>
+  var bigPipe = new BigPipe();
+  bigPipe.ready('pageLet1', function (data) {
+    console.log(data)
+    $("#test1").html(JSON.stringify(data));
+  });
+  bigPipe.ready('pageLet2', function (data) {
+    $("#test2").html("test2 ready");
+  });
+</script>
 {{/extend}}

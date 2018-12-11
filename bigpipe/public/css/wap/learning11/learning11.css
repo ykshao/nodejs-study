@@ -3,6 +3,10 @@
  * copyright (c) 2015 myApp
  */
 @import "animate.css";
+* {
+  -ms-touch-action: pan-y;
+      touch-action: pan-y;
+}
 /*初始化样式*/
 body {
   font-family: 'Microsoft YaHei', STXihei, MingLiu;
